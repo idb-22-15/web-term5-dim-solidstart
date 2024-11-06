@@ -1,25 +1,32 @@
-import { A } from "@solidjs/router";
-import Counter from "~/components/Counter";
+import { A } from '@solidjs/router'
 
 export default function Home() {
   return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">Hello world!</h1>
-      <Counter />
-      <p class="mt-8">
-        Visit{" "}
-        <a href="https://solidjs.com" target="_blank" class="text-sky-600 hover:underline">
-          solidjs.com
-        </a>{" "}
-        to learn how to build Solid apps.
-      </p>
-      <p class="my-4">
-        <span>Home</span>
-        {" - "}
-        <A href="/about" class="text-sky-600 hover:underline">
-          About Page
-        </A>{" "}
-      </p>
+    <main class="">
+      <div
+        class="hero min-h-screen"
+        style="background-image: url(https://galaktika.ru/wp-content/uploads/2019/04/bg_main2.jpg);"
+      >
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-neutral-content text-center">
+          <div class="max-w-lg">
+            <h1 class=" mb-5 text-5xl font-bold">Галактика цифровых решений</h1>
+            <p class="mb-5">Мы занимаемся разработкой программных решений более 35 лет</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 text-xl">
+        <p>
+          Корпорация «Галактика» - отечественный разработчик информационных бизнес-систем в странах
+          СНГ. Компания с 1987 года самостоятельно создает, поставляет и поддерживает передовые
+          ИТ-решения в области управления предприятием. На ноябрь 2015 года корпорация «Галактика»
+          предлагала компаниям, предприятиям, организациям комплекс решений для эффективного
+          управления бизнесом. Ядром комплекса являлась система «Галактика ERP» – интегрированная
+          система управления для предприятий – и отраслевые решения на ее базе («Галактика
+          Машиностроение», «Галактика Управление транспортом», «Галактика Управление
+          строительством», «Галактика Управление вузом» и др.). Мы оказываем услуги:
+        </p>
+      </div>
     </main>
-  );
+  )
 }
