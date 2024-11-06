@@ -1,3 +1,4 @@
+import { Title } from '@solidjs/meta'
 import { decodeJwt } from 'jose'
 import { createSignal, Show } from 'solid-js'
 import { useUser } from '~/stores/useUser'
@@ -32,20 +33,23 @@ export default function Feedback() {
   }
 
   return (
-    <main>
-      <h1 class="text-4xl font-bold mt-8 ">Обратная связь</h1>
-      <section class="mt-6 flex flex-col gap-y-6">
-        <form class="flex gap-x-8" onSubmit={onSubmit}>
-          <textarea name="text" class="textarea textarea-bordered w-96"></textarea>
-          <button class="btn btn-primary">Отправить</button>
-        </form>
-        <Show when={error()}>
-          <p class="text-error">{error()}</p>
-        </Show>
-        <Show when={text()}>
-          <p class="text-success">{text()}</p>
-        </Show>
-      </section>
-    </main>
+    <>
+      <Title>Обратная связь</Title>
+      <main>
+        <h1 class="text-4xl font-bold mt-8 ">Обратная связь</h1>
+        <section class="mt-6 flex flex-col gap-y-6">
+          <form class="flex gap-x-8" onSubmit={onSubmit}>
+            <textarea name="text" class="textarea textarea-bordered w-96"></textarea>
+            <button class="btn btn-primary">Отправить</button>
+          </form>
+          <Show when={error()}>
+            <p class="text-error">{error()}</p>
+          </Show>
+          <Show when={text()}>
+            <p class="text-success">{text()}</p>
+          </Show>
+        </section>
+      </main>
+    </>
   )
 }

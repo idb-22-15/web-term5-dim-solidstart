@@ -16,6 +16,7 @@ export default function Contacts() {
         <script
           type="text/javascript"
           charset="utf-8"
+          async
           src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A6c7d8a0c938d17beacc4e96de967049ef5568bd47f7a378a0b33455107b3e094&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"
         ></script>
       </section>
