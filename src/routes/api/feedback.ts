@@ -19,7 +19,7 @@ export const POST = async ({ request }: APIEvent) => {
   if (result.error) return json({ error: result.error.errors.map((e) => e.message).join(', ') }, { status: 400 })
   const { data } = result
 
-  const { rows } = await db.execute({ sql: `INSERT INTO feedback (user_id, text) VALUES (?, ?)`, args: [user.id, data.text] })
+  const { rows } = await db.execute({ sql: `INSERT INTO feedbacks (user_id, text) VALUES (?, ?)`, args: [user.id, data.text] })
 
   return json({ message: 'Сообщение отправлено' })
 }

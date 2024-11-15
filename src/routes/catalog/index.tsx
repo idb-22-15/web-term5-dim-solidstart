@@ -1,7 +1,11 @@
 import { Title } from '@solidjs/meta'
-import { A, useSearchParams } from '@solidjs/router'
+import { A, createAsync, query, useSearchParams } from '@solidjs/router'
 import { For, Show, createEffect, createResource, createSignal } from 'solid-js'
-import { CatalogItem } from '~/server/db/seed'
+import { getCatalogQuery } from '~/api'
+
+export const route = {
+  preload: () => getCatalogQuery(),
+}
 
 export default function Catalog() {
   const [searchParams] = useSearchParams()
@@ -11,15 +15,7 @@ export default function Catalog() {
     if (searchParams.filter !== filter()) setFilter(searchParams.filter as string | undefined)
   })
 
-  const [catalog] = createResource('catalog', async () => {
-    const res = await fetch('http://localhost:3000/api/catalog')
-    const data = (await res.json()) as CatalogItem[]
-    return data.map(item => ({
-      ...item,
-      href: `/catalog/${item.uri}`,
-      image: `/images/catalog/${item.uri}.jpg`,
-    }))
-  })
+  const catalog = createAsync(() => getCatalogQuery())
 
   const filteredCatalog = () => {
     if (!filter() || catalog() === undefined) return catalog()
