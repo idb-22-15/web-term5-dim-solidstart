@@ -46,7 +46,7 @@ export default function Home() {
       <Title>Галактика</Title>
       <main class="">
         <div
-          class="hero h-dvh max-h-[300px]"
+          class="hero h-dvh"
           style="background-image: url(https://galaktika.ru/wp-content/uploads/2019/04/bg_main2.jpg);"
         >
           <div class="hero-overlay bg-opacity-60"></div>

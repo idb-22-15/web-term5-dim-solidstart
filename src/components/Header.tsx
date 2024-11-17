@@ -14,39 +14,15 @@ type Link = {
 const _links: Link[] = [
   {
     name: 'Каталог',
-    needAuth: false,
-    children: [],
-  },
-  {
-    name: 'О нас',
-    needAuth: false,
-    url: '/about',
-  },
-  {
-    name: 'Контакты',
-    needAuth: false,
-    url: '/contacts',
-  },
-  {
-    name: 'Обратная связь',
-    needAuth: true,
-    url: '/feedback',
-  },
-]
-
-const links = [
-  {
-    name: 'Каталог',
-    needAuth: false,
     children: [
-      { name: 'Консалтинг', needAuth: false, url: '/catalog/consulting' },
-      { name: 'Внедрение', needAuth: false, url: '/catalog/integration' },
-      { name: 'Сопровождение', needAuth: false, url: '/catalog/convoy' },
-      { name: 'Консультационный центр', needAuth: false, url: '/catalog/center' },
+      { name: 'Консалтинг', url: '/catalog/consulting' },
+      { name: 'Внедрение', url: '/catalog/integration' },
+      { name: 'Сопровождение', url: '/catalog/convoy' },
+      { name: 'Консультационный центр', url: '/catalog/center' },
     ],
   },
-  { name: 'О нас', needAuth: false, url: '/about' },
-  { name: 'Контакты', needAuth: false, url: '/contacts' },
+  { name: 'О нас', url: '/about' },
+  { name: 'Контакты', url: '/contacts' },
   { name: 'Обратная связь', needAuth: true, url: '/feedback' },
 ]
 
@@ -80,11 +56,9 @@ export default function Header({ catalog }: { catalog: Awaited<ReturnType<typeof
 
   // refetch()
 
-  // const links = createMemo(() => {
-  //   const links = structuredClone(_links)
-  //   if (catalogLinks()) links[0].children = catalogLinks()
-  //   return links.filter(link => (user() ? true : !link.needAuth))
-  // })
+  const links = createMemo(() => {
+    return _links.filter(link => (user() ? true : !link.needAuth))
+  })
   // console.log(JSON.stringify(links()))
 
   return (
@@ -94,7 +68,7 @@ export default function Header({ catalog }: { catalog: Awaited<ReturnType<typeof
       </A>
       <nav class="flex">
         <ul class="menu menu-horizontal flex flex-nowrap w-max">
-          <For each={links}>
+          <For each={links()}>
             {link => (
               <li class="w-fit">
                 <Show fallback={<A href={link.url!}>{link.name}</A>} when={link.children}>
