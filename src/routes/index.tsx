@@ -1,4 +1,5 @@
 import { Title } from '@solidjs/meta'
+import { For } from 'solid-js'
 
 type NewsItem = {
   order: string
@@ -73,28 +74,32 @@ export default function Home() {
         <section class="mt-10">
           <h3 class="text-3xl font-bold">Новости</h3>
           <div class="mt-4 carousel gap-40">
-            {news.map(n => (
-              <div
-                id={`item-${n.order}`}
-                class="carousel-item w-full grid grid-cols-[3fr,1fr] gap-8"
-              >
-                <img src={n.image} class="w-full max-h-[70dvh] object-cover" />
-                <div class="flex flex-col gap-4">
-                  <p class="text-2xl font-bold">{n.title}</p>
-                  <p>{n.date}</p>
-                  <a href={n.url} class="btn btn-outline w-fit">
-                    Читать
-                  </a>
+            <For each={news}>
+              {n => (
+                <div
+                  id={`item-${n.order}`}
+                  class="carousel-item w-full grid grid-cols-[3fr,1fr] gap-8"
+                >
+                  <img src={n.image} class="w-full max-h-[70dvh] object-cover" />
+                  <div class="flex flex-col gap-4">
+                    <p class="text-2xl font-bold">{n.title}</p>
+                    <p>{n.date}</p>
+                    <a href={n.url} class="btn btn-outline w-fit">
+                      Читать
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )}
+            </For>
           </div>
           <div class="flex w-full justify-center gap-2 py-2">
-            {news.map(n => (
-              <a href={`#item-${n.order}`} class="btn btn-xs">
-                {n.order}
-              </a>
-            ))}
+            <For each={news}>
+              {n => (
+                <a href={`#item-${n.order}`} class="btn btn-xs">
+                  {n.order}
+                </a>
+              )}
+            </For>
           </div>
         </section>
       </main>
